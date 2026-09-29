@@ -180,6 +180,10 @@
     border:1px solid rgba(111,112,55,.45);border-radius:100px;padding:2px 8px;
   }
   .col-empty{padding:20px 12px;color:var(--muted);font-size:.78rem;font-style:italic}
+  .col-empty-weekend{
+    color:var(--olive);font-style:normal;font-weight:600;
+    font-size:.8rem;line-height:1.4;
+  }
 
   /* ── Class list view (primary) ───────────────────────── */
   .list{margin-bottom:44px}
@@ -221,6 +225,86 @@
     padding:56px 20px;text-align:center;color:var(--muted);
     border:1px dashed var(--line);border-radius:var(--radius);margin-bottom:44px;
   }
+
+  /* ── One-off dated events ────────────────────────────── */
+  .events{margin:0 0 48px}
+  .events-head{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:.86rem;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--olive);
+    margin:0 0 4px;padding-bottom:10px;border-bottom:2px solid var(--olive);
+  }
+  .events-head span{opacity:.6;letter-spacing:.14em}
+  .event{
+    display:grid;grid-template-columns:auto 1fr;gap:18px;
+    align-items:center;padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .event-date{
+    text-align:center;min-width:62px;border:1.5px solid var(--line);
+    border-radius:var(--radius);padding:7px 8px;line-height:1;
+  }
+  .event-day{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:1.5rem;
+    color:var(--ink);display:block;
+  }
+  .event-mon{
+    font-size:.6rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);display:block;margin-top:4px;
+  }
+  .event-wd{
+    font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);display:block;margin-top:3px;opacity:.8;
+  }
+  .event-name{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:clamp(1.25rem,4vw,1.6rem);line-height:1;
+    text-transform:uppercase;color:var(--rust);letter-spacing:.015em;margin:0;
+  }
+  .event-sub{font-size:.88rem;color:var(--ink);margin-top:6px}
+  .event-time{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+    color:var(--ink);letter-spacing:.02em;margin-top:6px;
+  }
+  .event-ig{
+    color:var(--olive);text-decoration:none;font-size:.82rem;
+    border-bottom:1px solid rgba(111,112,55,.35);
+  }
+  .event-ig:hover,.event-ig:focus-visible{border-bottom-color:var(--olive)}
+  .event.flag .event-time{color:var(--rust)}
+  .event.past .event-time{color:var(--muted)}
+  .event-brand{
+    font-size:.6rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:6px;
+  }
+  .brand-ig{
+    color:var(--olive);text-decoration:none;text-transform:none;
+    letter-spacing:.01em;font-weight:500;
+    border-bottom:1px solid rgba(111,112,55,.4);margin-left:2px;
+  }
+  .brand-ig:hover,.brand-ig:focus-visible{border-bottom-color:var(--olive)}
+  .slot-brand{
+    font-size:.56rem;font-weight:600;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--olive);margin-top:5px;
+  }
+  .event-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+
+  .event.flag .event-date{background:var(--rust);border-color:var(--rust)}
+  .event.flag .event-day{color:#fff}
+  .event.flag .event-mon,.event.flag .event-wd{color:rgba(255,255,255,.82)}
+
+  .event.past{opacity:.42}
+  .event.past .event-name{color:var(--muted)}
+
+  .event.today .event-date{border-color:var(--olive);background:rgba(111,112,55,.1)}
+
+  .tag-today{
+    display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;background:var(--olive);color:#fff;
+    border-radius:100px;padding:3px 9px;
+  }
+
+  /* A class whose slot is reserved but unnamed */
+  .card.tba .card-name,.slot.tba .slot-name{color:var(--muted)}
+  .card.tba,.slot.tba{opacity:.75}
 
   /* ── Booking ─────────────────────────────────────────── */
   .booking{
@@ -298,19 +382,24 @@
    note   : small olive tag, e.g. "Ladies batch" (optional)
 
    A class can have several sessions (see Yoga, which runs two batches).
+
+   Below the classes there is an events: list for one-off dates
+   (workshops, parties). Those use a full date, not a weekday.
    ══════════════════════════════════════════════════════════════════ */
 
 const SCHEDULE = {
-  month: "September 2026",
-  updated: "1 September 2026",
+  month: "October 2026",
+  updated: "29 September 2026",
   address: "1802, Centonic, C-Wing, next to Palm Beach Galleria, Sec 19D, Vashi",
   mapUrl: "https://maps.google.com/?q=Centonic+C+Wing+Palm+Beach+Galleria+Sector+19D+Vashi",
   phones: ["+91 98198 57035", "+91 97697 12642"],
 
+  /* ── WEEKLY CLASSES ─────────────────────────────────────────── */
   classes: [
     {
       name: "Yoga",
       with: "Ritu Jalota",
+      handle: "yoga.with.ritu",
       sessions: [
         { days: ["Mon","Tue","Fri"], start: "07:00", end: "08:00" },
         { days: ["Mon","Tue","Fri"], start: "08:00", end: "09:00" }
@@ -319,89 +408,175 @@ const SCHEDULE = {
     {
       name: "Dance Fitness",
       with: "Radha Thakkar",
+      handle: "oo_radha_thakkar_oo",
       sessions: [
         { days: ["Mon","Tue","Wed","Thu","Fri"], start: "09:30", end: "10:30" }
       ]
     },
     {
-      name: "Zumba & Bolly Beats",
-      with: "Himani",
+      name: "Bollywood Beginners",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Ruchika Jain",
+      note: "Ladies batch",
       sessions: [
-        { days: ["Sat","Sun"], start: "09:00", end: "10:00" }
+        { days: ["Mon","Wed"], start: "18:00", end: "19:00" }
       ]
     },
     {
-      name: "Contemporary",
-      with: "Shreya Rastogi",
+      name: "Bollywood Advance",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Rohit Choudhary",
       sessions: [
-        { days: ["Tue","Thu"], start: "17:30", end: "18:30" }
+        { days: ["Mon","Wed"], start: "19:00", end: "20:00" }
+      ]
+    },
+    {
+      name: "Jazz Funk",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Ruchika Jain",
+      sessions: [
+        { days: ["Mon","Wed"], start: "20:00", end: "21:00" }
+      ]
+    },
+    {
+      name: "Kids Dance",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Jeevak Gaikwad",
+      note: "Age 3.5–6 yrs",
+      sessions: [
+        { days: ["Tue","Thu"], start: "18:00", end: "19:00" }
+      ]
+    },
+    {
+      name: "To Be Announced",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      sub: "New class — watch this space",
+      tba: true,
+      sessions: [
+        { days: ["Tue","Thu"], start: "19:00", end: "20:00" }
+      ]
+    },
+    {
+      name: "Melvin Louis",
+      handle: "melvinlouis",
+      sub: "Dance choreography workshops",
+      note: "Workshop",
+      sessions: [
+        { days: ["Thu"], start: "20:00", end: "21:30" }
+      ]
+    },
+    {
+      name: "Playdate Friday",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub",
+      note: "Age 2–4 yrs",
+      sessions: [
+        { days: ["Fri"], start: "17:00", end: "18:00" }
+      ]
+    },
+    {
+      name: "Guitar & Ukulele",
+      with: "Swapnil Nawgire",
+      handle: "swacoustic09",
+      note: "Age 7+ · all levels",
+      sessions: [
+        { days: ["Fri"], start: "18:30", end: "20:00" }
       ]
     },
     {
       name: "Jive",
       with: "Amritpal Singh",
+      handle: "amritpaldancesingh",
       sessions: [
         { days: ["Sat"], start: "17:00", end: "18:30" }
       ]
+    }
+  ],
+
+  /* ── ONE-OFF DATES THIS MONTH ───────────────────────────────────
+     date   : "YYYY-MM-DD"                     (required)
+     time   : free text, e.g. "3–4:30pm"       (optional)
+     with   : instructor name                  (optional)
+     handle : Instagram handle, no @           (optional, becomes a link)
+     brand  : small label above the name       (optional)
+     sub / note / flag as for classes. flag: true → highlighted in rust.
+     Past dates grey out automatically; delete them whenever you like. */
+  events: [
+    {
+      date: "2026-10-02",
+      name: "Curiosity Club",
+      sub: "How fossils are formed",
+      note: "Age 5–7.5 yrs",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub"
     },
     {
-      name: "Bollywood Beginners",
-      with: "Ruchika Jain",
-      note: "Ladies batch",
-      sessions: [
-        { days: ["Mon","Wed"], start: "17:30", end: "18:30" }
-      ]
+      date: "2026-10-03",
+      name: "Open Mic",
+      time: "7pm onwards",
+      sub: "Open to all performances — music, poetry, comedy, whatever you bring",
+      brand: "Co-hosted with Bohemia IRL",
+      handle: "bohemiairl",
+      flag: true
     },
     {
-      name: "Hip Hop",
-      with: "Rohit Mankar",
-      sessions: [
-        { days: ["Mon","Wed"], start: "18:30", end: "19:30" }
-      ]
+      date: "2026-10-11",
+      name: "Healing through Art",
+      time: "4:30–5:30pm",
+      brand: "Soul Palette",
+      handle: "soul_palette30"
     },
     {
-      name: "Kids Dance",
-      with: "Jeevak Gaikwad",
-      note: "Age 3.5–6 yrs",
-      sessions: [
-        { days: ["Tue","Thu"], start: "18:30", end: "19:30" }
-      ]
+      date: "2026-10-10",
+      name: "Chakra Healing & Sound Bath",
+      time: "11am–12:30pm",
+      with: "Arti Jha",
+      handle: "flowandfrequencieswith_arti",
+      brand: "Workshop"
     },
     {
-      name: "Bollywood Advance",
-      with: "Rohit Choudhary",
-      sessions: [
-        { days: ["Mon","Wed"], start: "19:30", end: "20:30" }
-      ]
+      date: "2026-10-11",
+      name: "Belly Dance",
+      time: "3–4:30pm",
+      with: "Khushbu Patel",
+      handle: "khushbu_patel1806",
+      brand: "Workshop"
     },
     {
-      name: "Jazz Funk",
-      with: "Ruchika Jain",
-      sessions: [
-        { days: ["Mon","Wed"], start: "20:30", end: "21:30" }
-      ]
+      date: "2026-10-17",
+      name: "Salsa",
+      time: "7–9pm",
+      with: "Nilesh Waman",
+      handle: "urbankiz_nilesh",
+      brand: "Workshop"
     },
     {
-      name: "Garba",
-      with: "Aishwarya Diwan",
-      sessions: [
-        { days: ["Tue","Fri"], start: "20:00", end: "21:30" }
-      ]
+      date: "2026-10-18",
+      name: "Tinker Club",
+      sub: "Building a kaleidoscope",
+      note: "Age 8–12 yrs",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub"
     },
     {
-      name: "Melvin Louis",
-      sub: "Dance choreography workshops",
-      note: "Workshop",
-      sessions: [
-        { days: ["Thu"], start: "19:30", end: "21:00" }
-      ]
+      date: "2026-10-25",
+      name: "Healing through Art",
+      time: "4:30–5:30pm",
+      brand: "Soul Palette",
+      handle: "soul_palette30"
     },
     {
-      name: "Guitar & Ukulele",
-      note: "Age 7+ · all levels",
-      sessions: [
-        { days: ["Fri"], start: "18:30", end: "20:00" }
-      ]
+      date: "2026-10-31",
+      name: "Halloween Party",
+      sub: "More details soon",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub",
+      flag: true
     }
   ]
 };
@@ -444,6 +619,11 @@ const SCHEDULE = {
   </div>
 
   <div id="board" aria-live="polite"></div>
+
+  <section id="events" class="events" hidden>
+    <h2 class="events-head">Dates for your diary <span id="eventsMonth"></span></h2>
+    <div id="eventsList"></div>
+  </section>
 
   <section class="booking">
     <h2>See you at Analog</h2>
@@ -492,7 +672,7 @@ const SLOTS = [];
 SCHEDULE.classes.forEach(c => {
   c.sessions.forEach(s => {
     s.days.forEach(d => {
-      SLOTS.push({ day:d, start:s.start, end:s.end, name:c.name, with:c.with, sub:c.sub, note:c.note });
+      SLOTS.push({ day:d, start:s.start, end:s.end, name:c.name, with:c.with, sub:c.sub, note:c.note, tba:c.tba, brand:c.brand });
     });
   });
 });
@@ -567,24 +747,28 @@ function renderDays(){
 
     const head = document.createElement("div");
     head.className = "col-head";
+    const emptyLabel = (d === "Sat" || d === "Sun") ? "Workshops only" : "No classes";
     head.innerHTML =
       `<div class="col-day">${FULL[d]}</div>
-       <div class="col-count">${slots.length ? slots.length + (slots.length > 1 ? " classes" : " class") : "No classes"}${d === now.day ? " · Today" : ""}</div>`;
+       <div class="col-count">${slots.length ? slots.length + (slots.length > 1 ? " classes" : " class") : emptyLabel}${d === now.day ? " · Today" : ""}</div>`;
     col.appendChild(head);
 
     if (!slots.length){
       const e = document.createElement("div");
-      e.className = "col-empty";
-      e.textContent = "Rest day.";
+      e.className = "col-empty" + (d === "Sat" || d === "Sun" ? " col-empty-weekend" : "");
+      e.textContent = (d === "Sat" || d === "Sun")
+        ? "Weekends are for workshops!"
+        : "No regular classes.";
       col.appendChild(e);
     }
 
     slots.forEach(s => {
       const live = d === now.day && now.minutes >= mins(s.start) && now.minutes < mins(s.end);
       const div = document.createElement("div");
-      div.className = "slot" + (live ? " now" : "");
+      div.className = "slot" + (live ? " now" : "") + (s.tba ? " tba" : "");
       div.innerHTML =
         `<div class="slot-time">${range(s.start, s.end)}</div>
+         ${s.brand ? `<div class="slot-brand">${s.brand}</div>` : ""}
          <div class="slot-name">${s.name}</div>
          ${s.with ? `<div class="slot-with">with ${s.with}</div>` : ""}
          ${s.sub ? `<div class="slot-with">${s.sub}</div>` : ""}
@@ -612,7 +796,7 @@ function renderClasses(){
 
   const buildCard = c => {
     const card = document.createElement("article");
-    card.className = "card";
+    card.className = "card" + (c.tba ? " tba" : "");
 
     const runs = c.sessions.map(s => {
       const days = [...s.days].sort((x,y) => DAYS.indexOf(x) - DAYS.indexOf(y));
@@ -627,10 +811,19 @@ function renderClasses(){
               </div>`;
     }).join("");
 
+    const igLink = h => `<a class="event-ig" href="https://instagram.com/${h}" target="_blank" rel="noopener">@${h}</a>`;
+    const brandBit = c.brand
+      ? `<div class="event-brand">${c.brand}${c.handle ? ` <a class="brand-ig" href="https://instagram.com/${c.handle}" target="_blank" rel="noopener">@${c.handle}</a>` : ""}</div>`
+      : "";
+    const withBit = c.with
+      ? `<div class="card-with">with ${c.with}${(!c.brand && c.handle) ? " " + igLink(c.handle) : ""}</div>`
+      : (!c.brand && c.handle ? `<div class="card-with">${igLink(c.handle)}</div>` : "");
+
     card.innerHTML =
       `<div class="card-main">
+         ${brandBit}
          <h3 class="card-name">${c.name}</h3>
-         ${c.with ? `<div class="card-with">with ${c.with}</div>` : ""}
+         ${withBit}
          ${c.sub ? `<div class="card-with">${c.sub}</div>` : ""}
          ${c.note ? `<div class="slot-note">${c.note}</div>` : ""}
        </div>
@@ -669,11 +862,92 @@ function render(){
   if (!any){
     const e = document.createElement("div");
     e.className = "empty";
-    e.textContent = `No classes on ${FULL[state.day]} this month. Pick another day.`;
+    e.textContent = (state.day === "Sat" || state.day === "Sun")
+      ? "Weekends are for workshops! No regular classes on " + FULL[state.day] + " — check the dates below."
+      : `No classes on ${FULL[state.day]} this month. Pick another day.`;
     board.appendChild(e);
     return;
   }
   board.appendChild(state.view === "days" ? renderDays() : renderClasses());
+}
+
+/* ── One-off dated events ───────────────────────────────────────── */
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const WEEKDAY = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+/* Today in the studio's timezone, as YYYY-MM-DD */
+function studioDate(){
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone:"Asia/Kolkata", year:"numeric", month:"2-digit", day:"2-digit"
+  }).format(new Date());
+  return p;
+}
+
+/* Rough start-time of an event, for ordering two things on the same day.
+   Reads the first clock time in the free-text time field:
+   "3–4:30pm" → 15:00,  "11am–12:30pm" → 11:00,  "7pm onwards" → 19:00 */
+function eventMins(ev){
+  if (!ev.time) return -1;                       // untimed items sit first
+  const t = ev.time.toLowerCase();
+  const num = t.match(/(\d{1,2})(?::(\d{2}))?/);
+  if (!num) return -1;
+  let h = Number(num[1]);
+  const mm = Number(num[2] || 0);
+  const after = t.slice(num.index + num[0].length);
+  const mer = (after.match(/am|pm/) || t.match(/am|pm/) || [])[0];
+  if (mer === "pm" && h < 12) h += 12;
+  if (mer === "am" && h === 12) h = 0;
+  return h*60 + mm;
+}
+
+function renderEvents(){
+  const list = SCHEDULE.events || [];
+  const box = el("events");
+  if (!list.length){ box.hidden = true; return; }
+  box.hidden = false;
+
+  el("eventsMonth").textContent = "· " + SCHEDULE.month;
+  const today = studioDate();
+
+  const wrap = el("eventsList");
+  wrap.innerHTML = "";
+
+  [...list]
+    .sort((a,b) => a.date.localeCompare(b.date) || (eventMins(a) - eventMins(b)))
+    .forEach(ev => {
+    const [y,m,d] = ev.date.split("-").map(Number);
+    const wd = WEEKDAY[new Date(Date.UTC(y, m-1, d)).getUTCDay()];
+    const isToday = ev.date === today;
+    const isPast  = ev.date < today;
+
+    const row = document.createElement("article");
+    row.className = "event"
+      + (ev.flag && !isPast ? " flag" : "")
+      + (isPast ? " past" : "")
+      + (isToday ? " today" : "");
+
+    row.innerHTML =
+      `<div class="event-date">
+         <span class="event-day">${d}</span>
+         <span class="event-mon">${MONTHS[m-1]}</span>
+         <span class="event-wd">${wd}</span>
+       </div>
+       <div>
+         ${ev.brand ? `<div class="event-brand">${ev.brand}${ev.handle && !ev.with ? ` <a class="brand-ig" href="https://instagram.com/${ev.handle}" target="_blank" rel="noopener">@${ev.handle}</a>` : ""}</div>` : ""}
+         <h3 class="event-name">${ev.name}</h3>
+         ${ev.time ? `<div class="event-time">${ev.time}</div>` : ""}
+         ${ev.with ? `<div class="event-sub">with ${ev.with}${
+             ev.handle
+               ? ` <a class="event-ig" href="https://instagram.com/${ev.handle}" target="_blank" rel="noopener">@${ev.handle}</a>`
+               : ""}</div>` : ""}
+         ${ev.sub ? `<div class="event-sub">${ev.sub}</div>` : ""}
+         <div class="event-tags">
+           ${ev.note ? `<span class="slot-note">${ev.note}</span>` : ""}
+           ${isToday ? `<span class="tag-today">Today</span>` : ""}
+         </div>
+       </div>`;
+    wrap.appendChild(row);
+  });
 }
 
 /* ── Static bits ────────────────────────────────────────────────── */
@@ -699,7 +973,8 @@ el("viewClasses").addEventListener("click", () => { state.view = "classes"; rend
 
 renderLive();
 render();
-setInterval(() => { renderLive(); render(); }, 60000);
+renderEvents();
+setInterval(() => { renderLive(); render(); renderEvents(); }, 60000);
 </script>
 </body>
 </html>
