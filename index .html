@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Schedule — Analog House, Vashi</title>
+<meta name="description" content="Weekly class schedule at Analog House, Vashi. Yoga, Bollywood, Jazz Funk, Contemporary, Garba, Jive, Zumba, Kids Dance, Guitar &amp; Ukulele.">
+<meta property="og:title" content="Class Schedule — Analog House">
+<meta property="og:description" content="Log out, lean in. Dance, fitness and music classes in Vashi — always up to date.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     ANALOG HOUSE — SCHEDULE PAGE
+     To update monthly, edit ONLY the SCHEDULE block just below this
+     comment. Nothing else in the file needs to change.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<style>
+  :root{
+    --cream:#F2F0EA;
+    --cream-2:#E9E6DD;
+    --rust:#9A4B2A;
+    --rust-tint:rgba(154,75,42,.09);
+    --olive:#6F7037;
+    --ink:#2B2A26;
+    --muted:#8B8578;
+    --line:rgba(43,42,38,.14);
+    --radius:2px;
+    --shadow:0 1px 0 rgba(43,42,38,.06);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    /* subtle halftone texture, matching the flyers */
+    background-image:radial-gradient(rgba(43,42,38,.055) 1px, transparent 1px);
+    background-size:9px 9px;
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+  /* ── Top bar ─────────────────────────────────────────── */
+  .topbar{
+    background:var(--rust);
+    color:#fff;
+    text-align:center;
+    font-weight:700;
+    font-size:.78rem;
+    letter-spacing:.22em;
+    padding:11px 20px;
+    text-transform:uppercase;
+  }
+
+  /* ── Masthead ────────────────────────────────────────── */
+  .masthead{padding:30px 0 4px;text-align:center}
+  .logo{display:inline-block;text-decoration:none;color:inherit}
+  .logo img{height:118px;width:auto;display:block;margin:0 auto}
+  @media (max-width:620px){ .logo img{height:92px} }
+
+  /* ── Hero ────────────────────────────────────────────── */
+  .hero{padding:30px 0 26px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{
+    color:var(--olive);font-weight:600;font-size:.95rem;
+    letter-spacing:.01em;margin:0 0 6px;
+  }
+  h1{
+    font-family:'Oswald',sans-serif;font-weight:700;
+    text-transform:uppercase;color:var(--rust);
+    font-size:clamp(2.6rem,10vw,5.6rem);
+    line-height:.9;letter-spacing:.005em;margin:0;
+  }
+  .month{
+    display:inline-block;margin-top:16px;
+    border:1.5px solid var(--rust);color:var(--rust);
+    font-weight:600;font-size:.78rem;letter-spacing:.18em;
+    text-transform:uppercase;padding:6px 16px;border-radius:100px;
+  }
+
+  /* ── Live strip (signature element) ──────────────────── */
+  .live{
+    margin:22px 0 0;padding:16px 20px;
+    background:var(--rust);color:#fff;border-radius:var(--radius);
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;
+    justify-content:center;text-align:center;
+  }
+  .live-label{
+    font-size:.62rem;font-weight:700;letter-spacing:.24em;
+    text-transform:uppercase;opacity:.78;
+  }
+  .live-body{font-size:1rem;font-weight:500}
+  .live-body strong{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    text-transform:uppercase;letter-spacing:.03em;font-size:1.18rem;
+  }
+  .live.quiet{background:var(--olive)}
+
+  /* ── Controls ────────────────────────────────────────── */
+  .controls{
+    display:flex;flex-wrap:wrap;gap:16px;
+    align-items:center;justify-content:space-between;
+    padding:26px 0 20px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{
+    font-family:'Poppins',sans-serif;font-size:.76rem;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;
+    background:transparent;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:100px;
+    padding:7px 15px;cursor:pointer;
+    transition:background .15s ease,color .15s ease,border-color .15s ease;
+  }
+  .chip:hover{border-color:var(--rust);color:var(--rust)}
+  .chip[aria-pressed="true"]{background:var(--rust);border-color:var(--rust);color:#fff}
+  .chip.is-today::after{
+    content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+    background:var(--olive);margin-left:7px;vertical-align:middle;
+  }
+  .chip[aria-pressed="true"].is-today::after{background:#fff}
+
+  .toggle{display:flex;border:1.5px solid var(--line);border-radius:100px;overflow:hidden}
+  .toggle button{
+    font-family:'Poppins',sans-serif;font-size:.74rem;font-weight:600;
+    letter-spacing:.09em;text-transform:uppercase;
+    background:transparent;border:0;color:var(--muted);
+    padding:8px 16px;cursor:pointer;transition:background .15s ease,color .15s ease;
+  }
+  .toggle button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+
+  /* ── Day grid ────────────────────────────────────────── */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(7,minmax(0,1fr));
+    gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;margin-bottom:44px;
+  }
+  .col{background:var(--cream);display:flex;flex-direction:column;min-height:120px}
+  .col-head{
+    padding:13px 12px;border-bottom:1px solid var(--line);
+    background:var(--cream-2);
+  }
+  .col-day{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:1.02rem;
+    text-transform:uppercase;letter-spacing:.09em;color:var(--ink);line-height:1;
+  }
+  .col-count{font-size:.66rem;color:var(--muted);letter-spacing:.11em;text-transform:uppercase;margin-top:5px}
+  .col.today .col-head{background:var(--rust)}
+  .col.today .col-day,.col.today .col-count{color:#fff}
+  .col.today .col-count{opacity:.8}
+
+  .slot{padding:14px 12px;border-bottom:1px solid var(--line);position:relative}
+  .slot:last-child{border-bottom:0}
+  .slot.now{background:var(--rust-tint)}
+  .slot.now::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rust);
+  }
+  .slot-time{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:clamp(.78rem,.95vw,.9rem);
+    color:var(--rust);letter-spacing:.02em;line-height:1.2;white-space:nowrap;
+  }
+  .slot-name{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:clamp(.92rem,1.22vw,1.14rem);line-height:1.05;text-transform:uppercase;
+    color:var(--ink);margin-top:5px;letter-spacing:.01em;
+    overflow-wrap:anywhere;hyphens:auto;
+  }
+  .slot-with{font-size:.74rem;color:var(--muted);margin-top:4px;line-height:1.35;overflow-wrap:anywhere}
+  .slot-note{
+    display:inline-block;margin-top:7px;font-size:.6rem;font-weight:600;
+    letter-spacing:.13em;text-transform:uppercase;color:var(--olive);
+    border:1px solid rgba(111,112,55,.45);border-radius:100px;padding:2px 8px;
+  }
+  .col-empty{padding:20px 12px;color:var(--muted);font-size:.78rem;font-style:italic}
+  .col-empty-weekend{
+    color:var(--olive);font-style:normal;font-weight:600;
+    font-size:.8rem;line-height:1.4;
+  }
+
+  /* ── Class list view (primary) ───────────────────────── */
+  .list{margin-bottom:44px}
+  .section-head{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:.86rem;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--olive);
+    margin:38px 0 0;padding-bottom:10px;border-bottom:2px solid var(--olive);
+    display:flex;align-items:baseline;justify-content:space-between;
+  }
+  .section-head:first-child{margin-top:0}
+  .section-head span{font-size:.72rem;letter-spacing:.14em;opacity:.65;font-weight:500}
+
+  .card{
+    display:grid;grid-template-columns:1fr auto;gap:14px 32px;
+    align-items:center;padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  .card-name{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:clamp(1.5rem,5vw,2.1rem);line-height:1;
+    text-transform:uppercase;color:var(--rust);letter-spacing:.015em;margin:0;
+  }
+  .card-with{font-size:.85rem;color:var(--muted);margin-top:7px}
+  .card-runs{display:flex;flex-direction:column;gap:9px;align-items:flex-end}
+  .run{display:flex;align-items:center;gap:12px}
+  .run-time{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:1.05rem;
+    color:var(--ink);letter-spacing:.02em;white-space:nowrap;
+  }
+  .run-days{display:flex;gap:4px}
+  .pill{
+    font-size:.62rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:100px;
+    padding:3px 8px;line-height:1.35;
+  }
+  .pill-today{border-color:var(--olive);color:var(--olive);background:rgba(111,112,55,.09)}
+  .pill-now{background:var(--rust);border-color:var(--rust);color:#fff}
+
+  .empty{
+    padding:56px 20px;text-align:center;color:var(--muted);
+    border:1px dashed var(--line);border-radius:var(--radius);margin-bottom:44px;
+  }
+
+  /* ── One-off dated events ────────────────────────────── */
+  .events{margin:0 0 48px}
+  .events-head{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:.86rem;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--olive);
+    margin:0 0 4px;padding-bottom:10px;border-bottom:2px solid var(--olive);
+  }
+  .events-head span{opacity:.6;letter-spacing:.14em}
+  .event{
+    display:grid;grid-template-columns:auto 1fr;gap:18px;
+    align-items:center;padding:18px 0;border-bottom:1px solid var(--line);
+  }
+  .event-date{
+    text-align:center;min-width:62px;border:1.5px solid var(--line);
+    border-radius:var(--radius);padding:7px 8px;line-height:1;
+  }
+  .event-day{
+    font-family:'Oswald',sans-serif;font-weight:700;font-size:1.5rem;
+    color:var(--ink);display:block;
+  }
+  .event-mon{
+    font-size:.6rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--muted);display:block;margin-top:4px;
+  }
+  .event-wd{
+    font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);display:block;margin-top:3px;opacity:.8;
+  }
+  .event-name{
+    font-family:'Oswald',sans-serif;font-weight:600;
+    font-size:clamp(1.25rem,4vw,1.6rem);line-height:1;
+    text-transform:uppercase;color:var(--rust);letter-spacing:.015em;margin:0;
+  }
+  .event-sub{font-size:.88rem;color:var(--ink);margin-top:6px}
+  .event-time{
+    font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+    color:var(--ink);letter-spacing:.02em;margin-top:6px;
+  }
+  .event-ig{
+    color:var(--olive);text-decoration:none;font-size:.82rem;
+    border-bottom:1px solid rgba(111,112,55,.35);
+  }
+  .event-ig:hover,.event-ig:focus-visible{border-bottom-color:var(--olive)}
+  .event.flag .event-time{color:var(--rust)}
+  .event.past .event-time{color:var(--muted)}
+  .event-brand{
+    font-size:.6rem;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--olive);margin-bottom:6px;
+  }
+  .brand-ig{
+    color:var(--olive);text-decoration:none;text-transform:none;
+    letter-spacing:.01em;font-weight:500;
+    border-bottom:1px solid rgba(111,112,55,.4);margin-left:2px;
+  }
+  .brand-ig:hover,.brand-ig:focus-visible{border-bottom-color:var(--olive)}
+  .slot-brand{
+    font-size:.56rem;font-weight:600;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--olive);margin-top:5px;
+  }
+  .event-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+
+  .event.flag .event-date{background:var(--rust);border-color:var(--rust)}
+  .event.flag .event-day{color:#fff}
+  .event.flag .event-mon,.event.flag .event-wd{color:rgba(255,255,255,.82)}
+
+  .event.past{opacity:.42}
+  .event.past .event-name{color:var(--muted)}
+
+  .event.today .event-date{border-color:var(--olive);background:rgba(111,112,55,.1)}
+
+  .tag-today{
+    display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.13em;
+    text-transform:uppercase;background:var(--olive);color:#fff;
+    border-radius:100px;padding:3px 9px;
+  }
+
+  /* A class whose slot is reserved but unnamed */
+  .card.tba .card-name,.slot.tba .slot-name{color:var(--muted)}
+  .card.tba,.slot.tba{opacity:.75}
+
+  /* ── Booking ─────────────────────────────────────────── */
+  .booking{
+    border-top:1px solid var(--line);padding:44px 0 12px;text-align:center;
+  }
+  .booking h2{
+    font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;
+    color:var(--rust);font-size:clamp(1.7rem,6vw,2.6rem);
+    letter-spacing:.02em;margin:0 0 8px;line-height:1;
+  }
+  .booking p{color:var(--olive);font-weight:600;letter-spacing:.05em;margin:0 0 26px;text-transform:uppercase;font-size:.85rem}
+  .calls{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .call{
+    display:inline-flex;align-items:center;gap:10px;
+    text-decoration:none;color:var(--ink);
+    border:1.5px solid var(--ink);border-radius:100px;
+    padding:11px 22px;font-weight:500;font-size:1rem;
+    transition:background .15s ease,color .15s ease;
+  }
+  .call:hover,.call:focus-visible{background:var(--ink);color:var(--cream)}
+  .call svg{width:16px;height:16px;flex:none}
+  .updated{color:var(--muted);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;margin:34px 0 0}
+
+  .addressbar{
+    background:var(--rust);color:#fff;margin-top:26px;
+    padding:15px 20px;text-align:center;
+    font-size:.82rem;font-weight:500;letter-spacing:.045em;
+  }
+  .addressbar a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+  /* ── A11y & motion ───────────────────────────────────── */
+  :focus-visible{outline:2.5px solid var(--olive);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* ── Responsive ──────────────────────────────────────── */
+  @media (max-width:1040px){
+    .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  }
+  @media (max-width:820px){
+    .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media (max-width:620px){
+    .grid{grid-template-columns:1fr;gap:0}
+    .col{min-height:0}
+    .col + .col{border-top:1px solid var(--line)}
+    .controls{flex-direction:column;align-items:stretch;gap:14px}
+    .toggle{align-self:flex-start}
+    .card{grid-template-columns:1fr;align-items:start}
+    .card-runs{align-items:flex-start}
+    .live{flex-direction:column;gap:4px}
+  }
+
+  /* ── Print ───────────────────────────────────────────── */
+  @media print{
+    body{background:#fff;background-image:none}
+    .controls,.live,.topbar,.call{display:none!important}
+    .grid{break-inside:avoid}
+    a[href]::after{content:""}
+  }
+</style>
+<!-- ═══════════════════════════════════════════════════════════════════
+     THE ONLY PART YOU EDIT EACH MONTH. It sits here at the top of the
+     file on purpose, so you never have to scroll past anything.
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   ▼▼▼  EDIT THIS BLOCK EACH MONTH — NOTHING ELSE  ▼▼▼
+
+   days   : "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun"
+            Order inside the list doesn't matter — the page sorts itself,
+            first by earliest day of the week, then by start time.
+   start/end : 24-hour "HH:MM"  →  7pm is "19:00"
+   with   : instructor name — renders as "with Ritu Jalota"
+   sub    : subtitle without the word "with", for workshops etc. (optional)
+   note   : small olive tag, e.g. "Ladies batch" (optional)
+
+   A class can have several sessions (see Yoga, which runs two batches).
+
+   Below the classes there is an events: list for one-off dates
+   (workshops, parties). Those use a full date, not a weekday.
+   ══════════════════════════════════════════════════════════════════ */
+
+const SCHEDULE = {
+  month: "October 2026",
+  updated: "1 October 2026",
+  address: "1802, Centonic, C-Wing, next to Palm Beach Galleria, Sec 19D, Vashi",
+  mapUrl: "https://maps.google.com/?q=Centonic+C+Wing+Palm+Beach+Galleria+Sector+19D+Vashi",
+  phones: ["+91 98198 57035", "+91 97697 12642"],
+
+  /* ── WEEKLY CLASSES ─────────────────────────────────────────── */
+  classes: [
+    {
+      name: "Yoga",
+      with: "Ritu Jalota",
+      handle: "yoga.with.ritu",
+      sessions: [
+        { days: ["Mon","Tue","Fri"], start: "07:00", end: "08:00" },
+        { days: ["Mon","Tue","Fri"], start: "08:00", end: "09:00" }
+      ]
+    },
+    {
+      name: "Dance Fitness",
+      with: "Radha Thakkar",
+      handle: "oo_radha_thakkar_oo",
+      sessions: [
+        { days: ["Mon","Tue","Wed","Thu","Fri"], start: "09:30", end: "10:30" }
+      ]
+    },
+    {
+      name: "Bollywood Beginners",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Ruchika Jain",
+      note: "Ladies batch",
+      sessions: [
+        { days: ["Mon","Wed"], start: "18:00", end: "19:00" }
+      ]
+    },
+    {
+      name: "Bollywood Advance",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Rohit Choudhary",
+      sessions: [
+        { days: ["Mon","Wed"], start: "19:00", end: "20:00" }
+      ]
+    },
+    {
+      name: "Jazz Funk",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Ruchika Jain",
+      sessions: [
+        { days: ["Mon","Wed"], start: "20:00", end: "21:00" }
+      ]
+    },
+    {
+      name: "Kids Dance",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      with: "Jeevak Gaikwad",
+      note: "Age 3.5–6 yrs",
+      sessions: [
+        { days: ["Tue","Thu"], start: "18:00", end: "19:00" }
+      ]
+    },
+    {
+      name: "To Be Announced",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
+      sub: "New class — watch this space",
+      tba: true,
+      sessions: [
+        { days: ["Tue","Thu"], start: "19:00", end: "20:00" }
+      ]
+    },
+    {
+      name: "Melvin Louis",
+      handle: "melvinlouis",
+      sub: "Dance choreography workshops",
+      note: "Workshop",
+      sessions: [
+        { days: ["Thu"], start: "20:00", end: "21:30" }
+      ]
+    },
+    {
+      name: "Playdate Friday",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub",
+      note: "Age 2–4 yrs",
+      sessions: [
+        { days: ["Fri"], start: "17:00", end: "18:00" }
+      ]
+    },
+    {
+      name: "Guitar & Ukulele",
+      with: "Swapnil Nawgire",
+      handle: "swacoustic09",
+      note: "Age 7+ · all levels",
+      sessions: [
+        { days: ["Fri"], start: "18:30", end: "20:00" }
+      ]
+    },
+    {
+      name: "Jive",
+      with: "Amritpal Singh",
+      handle: "amritpaldancesingh",
+      sessions: [
+        { days: ["Sat"], start: "17:00", end: "18:30" }
+      ]
+    }
+  ],
+
+  /* ── ONE-OFF DATES THIS MONTH ───────────────────────────────────
+     date   : "YYYY-MM-DD"                     (required)
+     time   : free text, e.g. "3–4:30pm"       (optional)
+     with   : instructor name                  (optional)
+     handle : Instagram handle, no @           (optional, becomes a link)
+     brand  : small label above the name       (optional)
+     sub / note / flag as for classes. flag: true → highlighted in rust.
+     Past dates grey out automatically; delete them whenever you like. */
+  events: [
+    {
+      date: "2026-10-02",
+      name: "Curiosity Club",
+      sub: "How fossils are formed",
+      note: "Age 5–7.5 yrs",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub"
+    },
+    {
+      date: "2026-10-03",
+      name: "Open Mic",
+      time: "7pm onwards",
+      sub: "Open to all performances — music, poetry, comedy, whatever you bring",
+      brand: "Co-hosted with Bohemia IRL",
+      handle: "bohemiairl",
+      flag: true
+    },
+    {
+      date: "2026-10-11",
+      name: "Healing through Art",
+      time: "4:30–5:30pm",
+      brand: "Soul Palette",
+      handle: "soul_palette30"
+    },
+    {
+      date: "2026-10-10",
+      name: "Chakra Healing & Sound Bath",
+      time: "11am–12:30pm",
+      with: "Arti Jha",
+      handle: "flowandfrequencieswith_arti",
+      brand: "Workshop"
+    },
+    {
+      date: "2026-10-10",
+      name: "Karaoke Night",
+      time: "7pm onwards",
+      brand: "Co-hosted with Karun Bharat"
+    },
+    {
+      date: "2026-10-11",
+      name: "Belly Dance",
+      time: "3–4:30pm",
+      with: "Khushbu Patel",
+      handle: "khushbu_patel1806",
+      brand: "Workshop"
+    },
+    {
+      date: "2026-10-17",
+      name: "Salsa",
+      time: "7–9pm",
+      with: "Nilesh Waman",
+      handle: "urbankiz_nilesh",
+      brand: "Workshop"
+    },
+    {
+      date: "2026-10-18",
+      name: "Tinker Club",
+      time: "11am–12:30pm",
+      sub: "Building a kaleidoscope",
+      note: "Age 8–12 yrs",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub"
+    },
+    {
+      date: "2026-10-25",
+      name: "Healing through Art",
+      time: "4:30–5:30pm",
+      brand: "Soul Palette",
+      handle: "soul_palette30"
+    },
+    {
+      date: "2026-10-24",
+      name: "Halloween Party",
+      sub: "More details soon",
+      brand: "Little Owls Club",
+      handle: "littleowlsclub",
+      flag: true
+    }
+  ]
+};
+
+/* ▲▲▲  END OF EDITABLE BLOCK  ▲▲▲ ══════════════════════════════════ */
+</script>
+
+</head>
+<body>
+
+<div class="topbar">Dance · Fitness · Music</div>
+
+<header class="masthead">
+  <a class="logo" href="./">
+    <!-- Logo is embedded below so the page works as a single file.
+         To swap it, replace the src with a filename, e.g. src="analog-house-logo.png" -->
+    <img alt="Analog House — log out, lean in" src="data:image/png;base64,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">
+  </a>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Less scrolling, more moving</p>
+    <h1>The<br>Class<br>Schedule</h1>
+    <div class="month" id="month">—</div>
+  </section>
+
+  <div class="live" id="live" hidden>
+    <span class="live-label" id="liveLabel">Right now</span>
+    <span class="live-body" id="liveBody"></span>
+  </div>
+
+  <div class="controls">
+    <div class="chips" id="chips" role="group" aria-label="Filter by day"></div>
+    <div class="toggle" role="group" aria-label="Change view">
+      <button type="button" id="viewClasses" aria-pressed="true">By class</button>
+      <button type="button" id="viewDays" aria-pressed="false">By day</button>
+    </div>
+  </div>
+
+  <div id="board" aria-live="polite"></div>
+
+  <section id="events" class="events" hidden>
+    <h2 class="events-head">Dates for your diary <span id="eventsMonth"></span></h2>
+    <div id="eventsList"></div>
+  </section>
+
+  <section class="booking">
+    <h2>See you at Analog</h2>
+    <p>A space where you log out &amp; lean in</p>
+    <div class="calls" id="calls"></div>
+    <p class="updated" id="updated"></p>
+  </section>
+
+</main>
+
+<div class="addressbar" id="addressbar"></div>
+
+<script>
+
+
+/* ── Engine ─────────────────────────────────────────────────────── */
+const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const FULL = { Mon:"Monday", Tue:"Tuesday", Wed:"Wednesday", Thu:"Thursday", Fri:"Friday", Sat:"Saturday", Sun:"Sunday" };
+
+const mins = t => { const [h,m] = t.split(":").map(Number); return h*60 + m; };
+
+const fmt = t => {
+  const [h,m] = t.split(":").map(Number);
+  const suffix = h < 12 ? "am" : "pm";
+  const hr = h % 12 === 0 ? 12 : h % 12;
+  return m ? `${hr}:${String(m).padStart(2,"0")}${suffix}` : `${hr}${suffix}`;
+};
+const range = (s,e) => `${fmt(s)}–${fmt(e)}`;
+
+/* Sort keys: a class sits where its earliest day in the week falls,
+   and classes sharing that day are ordered by start time. */
+const firstDay   = c => Math.min(...c.sessions.flatMap(s => s.days.map(d => DAYS.indexOf(d))));
+const firstStart = c => Math.min(...c.sessions.map(s => mins(s.start)));
+const byWeek     = (a,b) => (firstDay(a) - firstDay(b)) || (firstStart(a) - firstStart(b));
+
+/* Group consecutive days: Mon,Tue,Wed,Thu,Fri → "Mon to Fri" */
+function dayLabel(days){
+  const idx = days.map(d => DAYS.indexOf(d)).sort((a,b)=>a-b);
+  if (idx.length >= 3 && idx[idx.length-1] - idx[0] === idx.length - 1)
+    return `${DAYS[idx[0]]} to ${DAYS[idx[idx.length-1]]}`;
+  return idx.map(i => DAYS[i]).join(", ");
+}
+
+/* Flatten into one entry per day per session */
+const SLOTS = [];
+SCHEDULE.classes.forEach(c => {
+  c.sessions.forEach(s => {
+    s.days.forEach(d => {
+      SLOTS.push({ day:d, start:s.start, end:s.end, name:c.name, with:c.with, sub:c.sub, note:c.note, tba:c.tba, brand:c.brand });
+    });
+  });
+});
+SLOTS.sort((a,b) => mins(a.start) - mins(b.start));
+
+/* Studio-local time, whichever timezone the visitor is in */
+function studioNow(){
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone:"Asia/Kolkata", weekday:"short", hour:"2-digit", minute:"2-digit", hour12:false
+  }).formatToParts(new Date());
+  const get = t => parts.find(p => p.type === t).value;
+  return { day: get("weekday"), minutes: Number(get("hour"))*60 + Number(get("minute")) };
+}
+
+let state = { day: "all", view: "classes" };
+const el = id => document.getElementById(id);
+
+/* ── Live strip ─────────────────────────────────────────────────── */
+function renderLive(){
+  const now = studioNow();
+  const box = el("live"), label = el("liveLabel"), body = el("liveBody");
+  const today = SLOTS.filter(s => s.day === now.day);
+
+  const on = today.find(s => now.minutes >= mins(s.start) && now.minutes < mins(s.end));
+  const next = today.find(s => mins(s.start) > now.minutes);
+
+  box.hidden = false;
+  box.classList.remove("quiet");
+
+  if (on){
+    label.textContent = "On the floor now";
+    body.innerHTML = `<strong>${on.name}</strong> · until ${fmt(on.end)}`;
+  } else if (next){
+    label.textContent = "Up next today";
+    body.innerHTML = `<strong>${next.name}</strong> · ${range(next.start, next.end)}`;
+  } else {
+    box.classList.add("quiet");
+    label.textContent = "Studio quiet";
+    body.innerHTML = `Nothing more today — <strong>doors open again tomorrow</strong>`;
+  }
+}
+
+/* ── Day chips ──────────────────────────────────────────────────── */
+function renderChips(){
+  const today = studioNow().day;
+  const box = el("chips");
+  box.innerHTML = "";
+  [{k:"all", t:"All days"}, ...DAYS.map(d => ({k:d, t:d}))].forEach(o => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (o.k === today ? " is-today" : "");
+    b.textContent = o.t;
+    b.setAttribute("aria-pressed", String(state.day === o.k));
+    if (o.k === today) b.title = "Today";
+    b.onclick = () => { state.day = o.k; render(); };
+    box.appendChild(b);
+  });
+}
+
+/* ── Views ──────────────────────────────────────────────────────── */
+function renderDays(){
+  const now = studioNow();
+  const days = state.day === "all" ? DAYS : [state.day];
+  const grid = document.createElement("div");
+  grid.className = "grid";
+  if (days.length === 1) grid.style.gridTemplateColumns = "1fr";
+
+  days.forEach(d => {
+    const slots = SLOTS.filter(s => s.day === d);
+    const col = document.createElement("div");
+    col.className = "col" + (d === now.day ? " today" : "");
+
+    const head = document.createElement("div");
+    head.className = "col-head";
+    const emptyLabel = (d === "Sat" || d === "Sun") ? "Workshops only" : "No classes";
+    head.innerHTML =
+      `<div class="col-day">${FULL[d]}</div>
+       <div class="col-count">${slots.length ? slots.length + (slots.length > 1 ? " classes" : " class") : emptyLabel}${d === now.day ? " · Today" : ""}</div>`;
+    col.appendChild(head);
+
+    if (!slots.length){
+      const e = document.createElement("div");
+      e.className = "col-empty" + (d === "Sat" || d === "Sun" ? " col-empty-weekend" : "");
+      e.textContent = (d === "Sat" || d === "Sun")
+        ? "Weekends are for workshops!"
+        : "No regular classes.";
+      col.appendChild(e);
+    }
+
+    slots.forEach(s => {
+      const live = d === now.day && now.minutes >= mins(s.start) && now.minutes < mins(s.end);
+      const div = document.createElement("div");
+      div.className = "slot" + (live ? " now" : "") + (s.tba ? " tba" : "");
+      div.innerHTML =
+        `<div class="slot-time">${range(s.start, s.end)}</div>
+         ${s.brand ? `<div class="slot-brand">${s.brand}</div>` : ""}
+         <div class="slot-name">${s.name}</div>
+         ${s.with ? `<div class="slot-with">with ${s.with}</div>` : ""}
+         ${s.sub ? `<div class="slot-with">${s.sub}</div>` : ""}
+         ${s.note ? `<div class="slot-note">${s.note}</div>` : ""}`;
+      col.appendChild(div);
+    });
+
+    grid.appendChild(col);
+  });
+  return grid;
+}
+
+function renderClasses(){
+  const now = studioNow();
+  const list = document.createElement("div");
+  list.className = "list";
+
+  const visible = SCHEDULE.classes
+    .map(c => ({
+      ...c,
+      sessions: state.day === "all" ? c.sessions : c.sessions.filter(s => s.days.includes(state.day))
+    }))
+    .filter(c => c.sessions.length)
+    .sort(byWeek);
+
+  const buildCard = c => {
+    const card = document.createElement("article");
+    card.className = "card" + (c.tba ? " tba" : "");
+
+    const runs = c.sessions.map(s => {
+      const days = [...s.days].sort((x,y) => DAYS.indexOf(x) - DAYS.indexOf(y));
+      const pills = days.map(d => {
+        const live = d === now.day && now.minutes >= mins(s.start) && now.minutes < mins(s.end);
+        const isToday = d === now.day;
+        return `<span class="pill${isToday ? " pill-today" : ""}${live ? " pill-now" : ""}">${d}</span>`;
+      }).join("");
+      return `<div class="run">
+                <div class="run-time">${range(s.start, s.end)}</div>
+                <div class="run-days">${pills}</div>
+              </div>`;
+    }).join("");
+
+    const igLink = h => `<a class="event-ig" href="https://instagram.com/${h}" target="_blank" rel="noopener">@${h}</a>`;
+    const brandBit = c.brand
+      ? `<div class="event-brand">${c.brand}${c.handle ? ` <a class="brand-ig" href="https://instagram.com/${c.handle}" target="_blank" rel="noopener">@${c.handle}</a>` : ""}</div>`
+      : "";
+    const withBit = c.with
+      ? `<div class="card-with">with ${c.with}${(!c.brand && c.handle) ? " " + igLink(c.handle) : ""}</div>`
+      : (!c.brand && c.handle ? `<div class="card-with">${igLink(c.handle)}</div>` : "");
+
+    card.innerHTML =
+      `<div class="card-main">
+         ${brandBit}
+         <h3 class="card-name">${c.name}</h3>
+         ${withBit}
+         ${c.sub ? `<div class="card-with">${c.sub}</div>` : ""}
+         ${c.note ? `<div class="slot-note">${c.note}</div>` : ""}
+       </div>
+       <div class="card-runs">${runs}</div>`;
+    return card;
+  };
+
+  // Split the day at noon — how anyone actually picks a class
+  const morning = visible.filter(c => firstStart(c) < 12*60);
+  const evening = visible.filter(c => firstStart(c) >= 12*60);
+
+  const section = (title, items) => {
+    if (!items.length) return;
+    const h = document.createElement("h2");
+    h.className = "section-head";
+    h.innerHTML = `${title} <span>${items.length}</span>`;
+    list.appendChild(h);
+    items.forEach(c => list.appendChild(buildCard(c)));
+  };
+
+  section("Mornings", morning);
+  section("Evenings", evening);
+
+  return list;
+}
+
+function render(){
+  renderChips();
+  el("viewDays").setAttribute("aria-pressed", String(state.view === "days"));
+  el("viewClasses").setAttribute("aria-pressed", String(state.view === "classes"));
+
+  const board = el("board");
+  board.innerHTML = "";
+
+  const any = SLOTS.some(s => state.day === "all" || s.day === state.day);
+  if (!any){
+    const e = document.createElement("div");
+    e.className = "empty";
+    e.textContent = (state.day === "Sat" || state.day === "Sun")
+      ? "Weekends are for workshops! No regular classes on " + FULL[state.day] + " — check the dates below."
+      : `No classes on ${FULL[state.day]} this month. Pick another day.`;
+    board.appendChild(e);
+    return;
+  }
+  board.appendChild(state.view === "days" ? renderDays() : renderClasses());
+}
+
+/* ── One-off dated events ───────────────────────────────────────── */
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const WEEKDAY = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+/* Today in the studio's timezone, as YYYY-MM-DD */
+function studioDate(){
+  const p = new Intl.DateTimeFormat("en-CA", {
+    timeZone:"Asia/Kolkata", year:"numeric", month:"2-digit", day:"2-digit"
+  }).format(new Date());
+  return p;
+}
+
+/* Rough start-time of an event, for ordering two things on the same day.
+   Reads the first clock time in the free-text time field:
+   "3–4:30pm" → 15:00,  "11am–12:30pm" → 11:00,  "7pm onwards" → 19:00 */
+function eventMins(ev){
+  if (!ev.time) return -1;                       // untimed items sit first
+  const t = ev.time.toLowerCase();
+  const num = t.match(/(\d{1,2})(?::(\d{2}))?/);
+  if (!num) return -1;
+  let h = Number(num[1]);
+  const mm = Number(num[2] || 0);
+  const after = t.slice(num.index + num[0].length);
+  const mer = (after.match(/am|pm/) || t.match(/am|pm/) || [])[0];
+  if (mer === "pm" && h < 12) h += 12;
+  if (mer === "am" && h === 12) h = 0;
+  return h*60 + mm;
+}
+
+function renderEvents(){
+  const list = SCHEDULE.events || [];
+  const box = el("events");
+  if (!list.length){ box.hidden = true; return; }
+  box.hidden = false;
+
+  el("eventsMonth").textContent = "· " + SCHEDULE.month;
+  const today = studioDate();
+
+  const wrap = el("eventsList");
+  wrap.innerHTML = "";
+
+  [...list]
+    .sort((a,b) => a.date.localeCompare(b.date) || (eventMins(a) - eventMins(b)))
+    .forEach(ev => {
+    const [y,m,d] = ev.date.split("-").map(Number);
+    const wd = WEEKDAY[new Date(Date.UTC(y, m-1, d)).getUTCDay()];
+    const isToday = ev.date === today;
+    const isPast  = ev.date < today;
+
+    const row = document.createElement("article");
+    row.className = "event"
+      + (ev.flag && !isPast ? " flag" : "")
+      + (isPast ? " past" : "")
+      + (isToday ? " today" : "");
+
+    row.innerHTML =
+      `<div class="event-date">
+         <span class="event-day">${d}</span>
+         <span class="event-mon">${MONTHS[m-1]}</span>
+         <span class="event-wd">${wd}</span>
+       </div>
+       <div>
+         ${ev.brand ? `<div class="event-brand">${ev.brand}${ev.handle && !ev.with ? ` <a class="brand-ig" href="https://instagram.com/${ev.handle}" target="_blank" rel="noopener">@${ev.handle}</a>` : ""}</div>` : ""}
+         <h3 class="event-name">${ev.name}</h3>
+         ${ev.time ? `<div class="event-time">${ev.time}</div>` : ""}
+         ${ev.with ? `<div class="event-sub">with ${ev.with}${
+             ev.handle
+               ? ` <a class="event-ig" href="https://instagram.com/${ev.handle}" target="_blank" rel="noopener">@${ev.handle}</a>`
+               : ""}</div>` : ""}
+         ${ev.sub ? `<div class="event-sub">${ev.sub}</div>` : ""}
+         <div class="event-tags">
+           ${ev.note ? `<span class="slot-note">${ev.note}</span>` : ""}
+           ${isToday ? `<span class="tag-today">Today</span>` : ""}
+         </div>
+       </div>`;
+    wrap.appendChild(row);
+  });
+}
+
+/* ── Static bits ────────────────────────────────────────────────── */
+function renderStatic(){
+  el("month").textContent = SCHEDULE.month;
+  el("updated").textContent = "Schedule updated " + SCHEDULE.updated;
+  document.title = `Class Schedule ${SCHEDULE.month} — Analog House, Vashi`;
+
+  const phoneIcon =
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>`;
+
+  el("calls").innerHTML = SCHEDULE.phones.map(p =>
+    `<a class="call" href="tel:${p.replace(/\s/g,"")}">${phoneIcon}<span>${p}</span></a>`).join("");
+
+  el("addressbar").innerHTML =
+    `<a href="${SCHEDULE.mapUrl}" target="_blank" rel="noopener">${SCHEDULE.address}</a>`;
+}
+
+renderStatic();
+
+el("viewDays").addEventListener("click", () => { state.view = "days"; render(); });
+el("viewClasses").addEventListener("click", () => { state.view = "classes"; render(); });
+
+renderLive();
+render();
+renderEvents();
+setInterval(() => { renderLive(); render(); renderEvents(); }, 60000);
+</script>
+</body>
+</html>
