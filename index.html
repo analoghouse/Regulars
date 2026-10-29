@@ -388,8 +388,8 @@
    ══════════════════════════════════════════════════════════════════ */
 
 const SCHEDULE = {
-  month: "October 2026",
-  updated: "1 October 2026",
+  month: "November 2026",
+  updated: "28 October 2026",
   address: "1802, Centonic, C-Wing, next to Palm Beach Galleria, Sec 19D, Vashi",
   mapUrl: "https://maps.google.com/?q=Centonic+C+Wing+Palm+Beach+Galleria+Sector+19D+Vashi",
   phones: ["+91 98198 57035", "+91 97697 12642"],
@@ -403,14 +403,6 @@ const SCHEDULE = {
       sessions: [
         { days: ["Mon","Tue","Fri"], start: "07:00", end: "08:00" },
         { days: ["Mon","Tue","Fri"], start: "08:00", end: "09:00" }
-      ]
-    },
-    {
-      name: "Dance Fitness",
-      with: "Radha Thakkar",
-      handle: "oo_radha_thakkar_oo",
-      sessions: [
-        { days: ["Mon","Tue","Wed","Thu","Fri"], start: "09:30", end: "10:30" }
       ]
     },
     {
@@ -442,32 +434,29 @@ const SCHEDULE = {
       ]
     },
     {
+      name: "Gymnastics",
+      brand: "Flex n Strike",
+      with: "Coach Akash",
+      sessions: [
+        { days: ["Tue","Thu"], start: "18:00", end: "19:00" }
+      ]
+    },
+    {
       name: "Kids Dance",
       brand: "IMAP",
       handle: "indiemovementartproject",
       with: "Jeevak Gaikwad",
       note: "Age 3.5–6 yrs",
       sessions: [
-        { days: ["Tue","Thu"], start: "18:00", end: "19:00" }
-      ]
-    },
-    {
-      name: "To Be Announced",
-      brand: "IMAP",
-      handle: "indiemovementartproject",
-      sub: "New class — watch this space",
-      tba: true,
-      sessions: [
         { days: ["Tue","Thu"], start: "19:00", end: "20:00" }
       ]
     },
     {
-      name: "Melvin Louis",
-      handle: "melvinlouis",
-      sub: "Dance choreography workshops",
-      note: "Workshop",
+      name: "Hip Hop",
+      brand: "IMAP",
+      handle: "indiemovementartproject",
       sessions: [
-        { days: ["Thu"], start: "20:00", end: "21:30" }
+        { days: ["Tue","Thu"], start: "20:00", end: "21:00" }
       ]
     },
     {
@@ -489,6 +478,14 @@ const SCHEDULE = {
       ]
     },
     {
+      name: "Belly Dancing",
+      with: "Khushbu Patel",
+      handle: "khushbu_patel1806",
+      sessions: [
+        { days: ["Sat"], start: "15:00", end: "16:30" }
+      ]
+    },
+    {
       name: "Jive",
       with: "Amritpal Singh",
       handle: "amritpaldancesingh",
@@ -507,84 +504,10 @@ const SCHEDULE = {
      sub / note / flag as for classes. flag: true → highlighted in rust.
      Past dates grey out automatically; delete them whenever you like. */
   events: [
-    {
-      date: "2026-10-02",
-      name: "Curiosity Club",
-      sub: "How fossils are formed",
-      note: "Age 5–7.5 yrs",
-      brand: "Little Owls Club",
-      handle: "littleowlsclub"
-    },
-    {
-      date: "2026-10-03",
-      name: "Open Mic",
-      time: "7pm onwards",
-      sub: "Open to all performances — music, poetry, comedy, whatever you bring",
-      brand: "Co-hosted with Bohemia IRL",
-      handle: "bohemiairl",
-      flag: true
-    },
-    {
-      date: "2026-10-11",
-      name: "Healing through Art",
-      time: "4:30–5:30pm",
-      brand: "Soul Palette",
-      handle: "soul_palette30"
-    },
-    {
-      date: "2026-10-10",
-      name: "Chakra Healing & Sound Bath",
-      time: "11am–12:30pm",
-      with: "Arti Jha",
-      handle: "flowandfrequencieswith_arti",
-      brand: "Workshop"
-    },
-    {
-      date: "2026-10-10",
-      name: "Karaoke Night",
-      time: "7pm onwards",
-      brand: "Co-hosted with Karun Bharat"
-    },
-    {
-      date: "2026-10-11",
-      name: "Belly Dance",
-      time: "3–4:30pm",
-      with: "Khushbu Patel",
-      handle: "khushbu_patel1806",
-      brand: "Workshop"
-    },
-    {
-      date: "2026-10-17",
-      name: "Salsa",
-      time: "7–9pm",
-      with: "Nilesh Waman",
-      handle: "urbankiz_nilesh",
-      brand: "Workshop"
-    },
-    {
-      date: "2026-10-18",
-      name: "Tinker Club",
-      time: "11am–12:30pm",
-      sub: "Building a kaleidoscope",
-      note: "Age 8–12 yrs",
-      brand: "Little Owls Club",
-      handle: "littleowlsclub"
-    },
-    {
-      date: "2026-10-25",
-      name: "Healing through Art",
-      time: "4:30–5:30pm",
-      brand: "Soul Palette",
-      handle: "soul_palette30"
-    },
-    {
-      date: "2026-10-24",
-      name: "Halloween Party",
-      sub: "More details soon",
-      brand: "Little Owls Club",
-      handle: "littleowlsclub",
-      flag: true
-    }
+    /* November dates go here, same shape as October's did:
+       { date: "2026-11-08", name: "Workshop name", time: "3–4:30pm",
+         with: "Teacher", handle: "their_instagram", brand: "Workshop" },
+       Leave the list empty and the whole section disappears.            */
   ]
 };
 
